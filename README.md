@@ -24,12 +24,11 @@ Forms are implemented using Flask-WTF for user input validation.
 
 ## Installing using GitHub (macOS)
 
-- `git clone https://github.com/IvanKorshunovE/my_cinema_application`
-- `cd my_cinema_application`
+- `git clone https://github.com/IvanKorshunovE/f_commerce`
 - `python -m venv venv`
 - `source venv/bin/activate`
 - `pip install -r requirements.txt`
-- `set POSTGRES_HOST=<your db hostname>`
+- `go to the root directory and type 'export FLASK_APP=run.py'`
 - `set POSTGRES_DB=<your db name>`
 - `set POSTGRES_USER=<your db user>`
 - `set POSTGRES_PASSWORD=<your db password>`
