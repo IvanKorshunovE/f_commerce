@@ -1,7 +1,18 @@
 from market import app
-from flask import render_template, redirect, url_for, flash, request
+from flask import (
+    render_template,
+    redirect,
+    url_for,
+    flash,
+    request
+)
 from market.models import Item, User
-from market.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm
+from market.forms import (
+    RegisterForm,
+    LoginForm,
+    PurchaseItemForm,
+    SellItemForm
+)
 from market import db
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -15,8 +26,6 @@ def home_page():
 @app.route("/market", methods=["GET", "POST"])
 @login_required
 def market_page():
-    purchase_form = PurchaseItemForm()
-    selling_form = SellItemForm()
     if request.method == "POST":
         purchased_item = request.form.get("purchased_item")
         p_item_object = Item.query.filter_by(name=purchased_item).first()
@@ -33,7 +42,6 @@ def market_page():
                     category="danger",
                 )
 
-        # Selling Item Login
         sold_item = request.form.get("sold_item")
         s_item_object = Item.query.filter_by(name=sold_item).first()
         if s_item_object:
@@ -52,6 +60,8 @@ def market_page():
         return redirect(url_for("market_page"))
 
     if request.method == "GET":
+        purchase_form = PurchaseItemForm()
+        selling_form = SellItemForm()
         items = Item.query.filter_by(owner=None)
         owned_items = Item.query.filter_by(owner=current_user.id)
         return render_template(
